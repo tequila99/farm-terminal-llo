@@ -1,6 +1,7 @@
 <template lang='pug'>
 q-header.bg-white
   q-toolbar.text-primary.q-px-xl.q-mt-sm
+    .row(style='width:132px;min-width:132px;')
     q-input.q-mx-auto(
       v-model='search'
       rounded
@@ -15,11 +16,17 @@ q-header.bg-white
         search-icon(color='primary')
       template(#append)
         close-icon.cursor-pointer(v-if='search' @click='search=""' color='primary')
+    .row.justify-end(style='width:132px;min-width:132px;')
+      q-btn(flat round)
+        MenuIcon
+      SignOutButton
 </template>
 
 <script>
 import SearchIcon from 'components/icons/SearchIcon.vue'
 import CloseIcon from 'components/icons/CloseIcon.vue'
+import MenuIcon from 'components/icons/MenuButton.vue'
+import SignOutButton from 'components/buttons/SignOutButton.vue'
 export default {
   name: 'MainHeader',
   data () {
@@ -28,7 +35,7 @@ export default {
     }
   },
   components: {
-    SearchIcon, CloseIcon
+    SearchIcon, CloseIcon, MenuIcon, SignOutButton
   }
 }
 </script>

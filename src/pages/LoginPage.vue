@@ -1,9 +1,9 @@
 <template lang='pug'>
-.column.q-mx-auto.q-gutter-y-lg.q-px-xl(style='width:100%;max-width:560px;')
+.column.q-mx-auto.q-mt-xl.q-gutter-y-lg.q-px-xl(style='width:100%;max-width:560px;')
   h3.text-primary.q-mx-auto Квазар.Аптека
   UserName(v-model='username')
   UserPassword(v-model='password')
-  LoginButton
+  LoginButton(@click='handleLogin')
 </template>
 
 <script>
@@ -25,9 +25,14 @@ export default {
     }
   },
   computed: {},
-  methods: {},
-  created () {},
-  mounted () {},
+  methods: {
+    handleLogin () {
+      this.$auth.signIn(this.username, this.password)
+    }
+  },
+  mounted () {
+    this.username = this.$auth.username()
+  },
   components: {
     UserName, UserPassword, LoginButton
   }
