@@ -20,7 +20,7 @@ export default {
         },
         persistent: true
       }).onOk(() => {
-        this.$auth.signOut()
+        this.$user.signOut()
       })
     }
   },

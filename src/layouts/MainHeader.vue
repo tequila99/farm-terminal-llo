@@ -1,7 +1,8 @@
 <template lang='pug'>
-q-header.bg-white
-  q-toolbar.text-primary.q-px-xl.q-mt-sm
-    .row(style='width:132px;min-width:132px;')
+q-header(:style='{"background-color": isDark ? "#121212" : "#ffffff"}')
+  q-toolbar.q-px-xl.q-py-sm.text-primary
+    .row.align-center(style='width:132px;min-width:132px;height:100%')
+      MainAvatar
     q-input.q-mx-auto(
       v-model='search'
       rounded
@@ -13,29 +14,40 @@ q-header.bg-white
       @keyup.enter='$emit("search", search)'
       )
       template(#prepend)
-        search-icon(color='primary')
+        SearchIcon(color='primary')
       template(#append)
-        close-icon.cursor-pointer(v-if='search' @click='search=""' color='primary')
+        CloseIcon.cursor-pointer(v-if='search' @click='search=""' color='primary')
     .row.justify-end(style='width:132px;min-width:132px;')
-      q-btn(flat round)
-        MenuIcon
+      MainMenu
       SignOutButton
 </template>
 
 <script>
 import SearchIcon from 'components/icons/SearchIcon.vue'
 import CloseIcon from 'components/icons/CloseIcon.vue'
-import MenuIcon from 'components/icons/MenuButton.vue'
+import MainMenu from 'components/menus/MainMenu.vue'
 import SignOutButton from 'components/buttons/SignOutButton.vue'
+import MainAvatar from 'components/avatars/MainAvatar.vue'
 export default {
   name: 'MainHeader',
+  props: {
+    dark: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       search: ''
     }
   },
+  computed: {
+    isDark () {
+      return this.$q.dark.isActive
+    }
+  },
   components: {
-    SearchIcon, CloseIcon, MenuIcon, SignOutButton
+    SearchIcon, CloseIcon, MainMenu, SignOutButton, MainAvatar
   }
 }
 </script>

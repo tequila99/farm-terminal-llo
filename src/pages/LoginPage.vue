@@ -38,11 +38,11 @@ export default {
   computed: {},
   methods: {
     handleLogin () {
-      this.$auth.signIn(this.username, this.password)
+      this.$user.signIn(this.username, this.password)
     }
   },
   mounted () {
-    this.username = this.$auth.username()
+    this.username = this.$user.username()
     this.$refs['user-input'].focus()
   },
   components: {
