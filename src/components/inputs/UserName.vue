@@ -1,7 +1,9 @@
 <template lang='pug'>
 CommonInput(
+  ref='common-input'
   :modelValue='modelValue'
   @update:modelValue='$emit("update:modelValue", $event)'
+  :rules='[val => !!val || "Поле ввода имени пользователя не должно быть пустым"]'
   )
   template(#prepend)
     PersonIcon(:color='color')
@@ -30,6 +32,11 @@ export default {
     }
   },
   emits: ['update:modelValue'],
+  methods: {
+    focus () {
+      this.$refs['common-input'].focus()
+    }
+  },
   components: { CloseIcon, PersonIcon, CommonInput }
 }
 </script>

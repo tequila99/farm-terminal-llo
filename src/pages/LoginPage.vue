@@ -1,9 +1,20 @@
 <template lang='pug'>
 .column.q-mx-auto.q-mt-xl.q-gutter-y-lg.q-px-xl(style='width:100%;max-width:560px;')
   h3.text-primary.q-mx-auto Квазар.Аптека
-  UserName(v-model='username')
-  UserPassword(v-model='password')
-  LoginButton(@click='handleLogin')
+  UserName(
+    v-model='username'
+    ref='user-input'
+    @keyup.enter='$refs["password-input"].focus()'
+    )
+  UserPassword(
+    v-model='password'
+    ref='password-input'
+    @keyup.enter='handleLogin'
+    )
+  LoginButton(
+    @click='handleLogin'
+    ref='login-button'
+    )
 </template>
 
 <script>
@@ -32,6 +43,7 @@ export default {
   },
   mounted () {
     this.username = this.$auth.username()
+    this.$refs['user-input'].focus()
   },
   components: {
     UserName, UserPassword, LoginButton

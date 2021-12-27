@@ -1,10 +1,12 @@
 <template lang='pug'>
 q-input(
+  ref='base-input'
   rounded
   outlined
   v-model='value'
   :type='type'
   @keyup.esc='value=""'
+  :rules='rules'
   )
   template(#prepend)
     slot(name='prepend')
@@ -23,6 +25,10 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    rules: {
+      type: Array,
+      default: () => []
     }
   },
   emits: ['update:modelValue'],
@@ -34,6 +40,11 @@ export default {
       set (value) {
         this.$emit('update:modelValue', value)
       }
+    }
+  },
+  methods: {
+    focus () {
+      this.$refs['base-input'].focus()
     }
   }
 }

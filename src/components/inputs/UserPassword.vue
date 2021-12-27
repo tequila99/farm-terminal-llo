@@ -1,8 +1,10 @@
 <template lang='pug'>
 CommonInput(
+  ref='common-input'
   :modelValue='modelValue'
   :type='showPwd ? "text" : "password"'
   @update:modelValue='$emit("update:modelValue", $event)'
+  :rules='[val => !!val || "Поле ввода пароля не должно быть пустым"]'
   )
   template(#prepend)
     LockIcon(:color='color')
@@ -34,6 +36,11 @@ export default {
   data () {
     return {
       showPwd: false
+    }
+  },
+  methods: {
+    focus () {
+      this.$refs['common-input'].focus()
     }
   },
   components: { CommonInput, LockIcon, EyeIcon, EyeSlashIcon }
