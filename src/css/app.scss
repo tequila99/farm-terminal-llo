@@ -22,3 +22,10 @@
   src: url('assets/fonts/BarnaulGroteskExtraBold-Reg.woff');
   font-weight: 900;
 }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
+}

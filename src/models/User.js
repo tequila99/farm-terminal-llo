@@ -36,7 +36,7 @@ export default class User {
       this.storage.setItem('username', username)
       const { token } = await this.api.signIn(username, password)
       this.storage.setItem('token', token)
-      this.api.token = token
+      this.api.setToken(token)
       this.subscribes.forEach(el => el('SIGNED_IN', { username }))
     } catch (error) {
       this.logger.error(error.message)

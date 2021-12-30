@@ -7,6 +7,8 @@ q-input(
   :type='type'
   @keyup.esc='value=""'
   :rules='rules'
+  :input-class='inputClass'
+  :hide-bottom-space='hideBottomSpace'
   )
   template(#prepend)
     slot(name='prepend')
@@ -29,6 +31,14 @@ export default {
     rules: {
       type: Array,
       default: () => []
+    },
+    inputClass: {
+      type: String,
+      default: ''
+    },
+    hideBottomSpace: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue'],

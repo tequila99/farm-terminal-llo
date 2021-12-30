@@ -12,6 +12,17 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageIndex'
+  name: 'PageIndex',
+  inject: ['barcodeState'],
+  watch: {
+    lloPrescription (val) {
+      console.log('Прочитан льготный рецепт')
+    }
+  },
+  computed: {
+    lloPrescription () {
+      return this.barcodeState.lloPrescription
+    }
+  }
 })
 </script>

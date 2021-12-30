@@ -2,16 +2,27 @@
 MenuButton
   q-menu(fit)
     .column.q-ma-md
-      .text-h6.text-center.q-mb-sm.text-primary Настройки
+      .text-h6.text-center.q-mb-sm.text-primary.relative Настройки
+      .absolute-top-right
+        q-btn(flat round size='sm' v-close-popup)
+          CloseIcon
+          q-tooltip Закрыть меню
       q-separator.q-mb-sm
       q-toggle.text-subtitle1(v-model='darkMode' label='Тема оформления')
       q-toggle.text-subtitle1(v-model='fullScreen' label='Режим отображения')
+  q-tooltip Меню настроек программы
 </template>
 
 <script>
-import MenuButton from 'src/components/buttons/MenuButton.vue'
+import MenuButton from 'components/buttons/MenuButton.vue'
+import CloseIcon from 'components/icons/CloseIcon.vue'
 export default {
   name: 'MainMenu',
+  data () {
+    return {
+      visible: false
+    }
+  },
   computed: {
     darkMode: {
       get () {
@@ -33,7 +44,8 @@ export default {
         }
       }
     }
+
   },
-  components: { MenuButton }
+  components: { MenuButton, CloseIcon }
 }
 </script>

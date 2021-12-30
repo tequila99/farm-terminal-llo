@@ -3,21 +3,25 @@ q-avatar.cursor-pointer(color='grey-5' size='xl')
   span(v-if='!avatar') {{ initials }}
   q-img(v-else :src='avatar' alt="")
   //- q-badge(color='red' text-color='white' floating) {{ messagesCount }}
-  q-tooltip Профиль пользователя "{{ fullname }}"
+  q-tooltip Профиль пользователя {{ fullname }}
 </template>
 
 <script>
+import { userSymbol } from 'src/api/dependency'
 export default {
   name: 'MainAvatar',
+  inject: {
+    user: userSymbol
+  },
   computed: {
     initials () {
-      return this.$user.user()?.initials || ''
+      return this.user.user()?.initials || ''
     },
     avatar () {
-      return this.$user.user()?.avatar || ''
+      return this.user.user()?.avatar || ''
     },
     fullname () {
-      return this.$user.user()?.fullname || ''
+      return this.user.user()?.fullname || ''
     }
   }
 }

@@ -1,9 +1,13 @@
 import { boot } from 'quasar/wrappers'
+import TransportApi from 'src/api/TransportApi'
 import User from 'src/models/User'
 import UserApi from 'src/api/UserApi'
 import Logger from 'src/helpers/Logger'
 import Storage from 'src/helpers/Storage'
-const api = new UserApi()
+import { userSymbol } from 'src/api/dependency'
+
+const transportApi = new TransportApi()
+const api = new UserApi(transportApi)
 const logger = new Logger()
 const storage = new Storage()
 const user = new User(api, logger, storage)
@@ -30,10 +34,10 @@ export default boot(async ({ app, router }) => {
   })
   const token = storage.getItem('token')
   if (token) {
-    api.token = token
+    transportApi.token = token
     await user.getProfile()
   }
-  app.config.globalProperties.$user = user
+  app.provide(userSymbol, user)
   if (user.isLogin()) router.push({ path: '/' })
   router.push({ path: '/login' })
 })

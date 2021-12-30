@@ -21,9 +21,12 @@
 import UserName from 'components/inputs/UserName.vue'
 import UserPassword from 'components/inputs/UserPassword.vue'
 import LoginButton from 'components/buttons/LoginButton.vue'
+import { userSymbol } from 'src/api/dependency'
 export default {
   name: 'LoginPage',
-  props: {},
+  inject: {
+    user: userSymbol
+  },
   data () {
     return {
       username: '',
@@ -35,14 +38,13 @@ export default {
       if (!val) this.password = ''
     }
   },
-  computed: {},
   methods: {
     handleLogin () {
-      this.$user.signIn(this.username, this.password)
+      this.user.signIn(this.username, this.password)
     }
   },
   mounted () {
-    this.username = this.$user.username()
+    this.username = this.user.username()
     this.$refs['user-input'].focus()
   },
   components: {

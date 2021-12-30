@@ -1,7 +1,7 @@
 <template lang='pug'>
 q-layout view='lHh Lpr lFf'
   MainHeader
-  q-page-container
+  q-page-container(style='padding-top:40px!important;')
     router-view
 </template>
 

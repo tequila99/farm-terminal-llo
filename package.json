@@ -12,7 +12,11 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
-    "quasar": "^2.0.0"
+    "date-fns": "^2.27.0",
+    "quasar": "^2.0.0",
+    "socket.io-client": "^2.4.0",
+    "uid": "^2.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",

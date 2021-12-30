@@ -2,6 +2,7 @@
 CommonButton
   LoginIcon.q-mr-lg
   |Войти в систему
+  q-tooltip Нажмите чтобы войти в систему
 </template>
 
 <script>

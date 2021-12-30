@@ -1,33 +1,24 @@
 <template lang='pug'>
-q-header(:style='{"background-color": isDark ? "#121212" : "#ffffff"}')
+q-header.relative(:style='{"background-color": isDark ? "#121212" : "#ffffff"}')
   q-toolbar.q-px-xl.q-py-sm.text-primary
-    .row.align-center(style='width:132px;min-width:132px;height:100%')
+    .row(style='width:132px;min-width:132px;')
       MainAvatar
-    q-input.q-mx-auto(
-      v-model='search'
-      rounded
-      outlined
-      style='width: 100%; max-width: 789px;'
-      hide-bottom-space
-      input-class='q-mx-sm'
-      @keyup.esc='search=""'
-      @keyup.enter='$emit("search", search)'
-      )
-      template(#prepend)
-        SearchIcon(color='primary')
-      template(#append)
-        CloseIcon.cursor-pointer(v-if='search' @click='search=""' color='primary')
-    .row.justify-end(style='width:132px;min-width:132px;')
+    Search.q-mx-auto(style='width: 100%; max-width: 789px;')
+    .row(style='width:132px;min-width:132px;')
       MainMenu
       SignOutButton
+  .column.absolute-top-right.q-pa-sm
+    DisposalIcon.q-mb-sm(size='1.4rem')
+    ScannerIcon(size='1.4rem')
 </template>
 
 <script>
-import SearchIcon from 'components/icons/SearchIcon.vue'
-import CloseIcon from 'components/icons/CloseIcon.vue'
+import DisposalIcon from 'components/icons/DisposaIcon.vue'
+import ScannerIcon from 'components//icons/ScannerIcon.vue'
 import MainMenu from 'components/menus/MainMenu.vue'
 import SignOutButton from 'components/buttons/SignOutButton.vue'
 import MainAvatar from 'components/avatars/MainAvatar.vue'
+import Search from 'components/inputs/Search.vue'
 export default {
   name: 'MainHeader',
   props: {
@@ -47,7 +38,7 @@ export default {
     }
   },
   components: {
-    SearchIcon, CloseIcon, MainMenu, SignOutButton, MainAvatar
+    MainMenu, SignOutButton, MainAvatar, DisposalIcon, ScannerIcon, Search
   }
 }
 </script>
