@@ -9,8 +9,11 @@ q-input(
   :rules='rules'
   :input-class='inputClass'
   :hide-bottom-space='hideBottomSpace'
-  :readonly='readonly'
+  :label='label'
+  label-stack
   :disable='disable'
+  :radonly='readonly'
+  label-color='primary'
   )
   template(#prepend)
     slot(name='prepend')
@@ -43,6 +46,10 @@ export default {
       type: Boolean,
       default: false
     },
+    label: {
+      type: String,
+      default: ''
+    },
     readonly: {
       type: Boolean,
       default: false
@@ -70,3 +77,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.q-field__label {
+  font-weight: 600!important;
+}
+.q-textarea .q-field__native {
+  line-height: 32px;
+  height: 90px;
+}
+</style>

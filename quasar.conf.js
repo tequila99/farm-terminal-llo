@@ -26,7 +26,8 @@ module.exports = configure(function (ctx) {
       'storage',
       'log',
       'user',
-      'recipe'
+      'recipe',
+      'pdf'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -51,6 +52,9 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+      env: {
+        VUE_ENV: 'client'
+      },
       extendWebpack (cfg) {
         cfg.module.rules.push({
           test: /\.pug$/,

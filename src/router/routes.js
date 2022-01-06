@@ -11,7 +11,8 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/RecipeList.vue') }
+      { path: '', component: () => import('pages/RecipeList.vue') },
+      { path: '/recipe/:id', component: () => import('pages/RecipeProfile.vue'), props: true }
     ],
     meta: { authRequired: true }
   },

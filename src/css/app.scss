@@ -28,4 +28,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   overflow: hidden;
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;;
+    background-color: #ccc;
+  }
+  ::-webkit-scrollbar-track {
+   border-radius: 5px;
+   background: #a8a8a8;
+   box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0,0,0,0.1)
+  }
+  ::-webkit-scrollbar-thumb {
+   border-radius: 5px;
+   background-color: #707070;
+  }  
 }

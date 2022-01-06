@@ -55,10 +55,7 @@ q-page(padding)
 
 <script>
 import { format, parseISO } from 'date-fns'
-const formatSnils = snils => (typeof snils === 'string' && snils.length === 11)
-  ? snils.match(/(\d{3})(\d{3})(\d{3})(\d{2})/).slice(1, 5).map((el, i) => i === 2 ? el + ' ' : i === 3 ? el : el + '-').join('')
-  : snils
-
+import { formatSnils } from 'src/helpers'
 import RecipeStatusIcon from 'components/icons/RecipeStatusIcon.vue'
 import { recipeSymbol, barcodeSymbol } from 'src/api/dependency'
 export default {
@@ -173,8 +170,8 @@ export default {
         this.items = items
       }
     },
-    handleRecipe () {
-
+    handleRecipe (e, { id }) {
+      this.$router.push({ path: `/recipe/${id}` })
     }
   },
   mounted () {

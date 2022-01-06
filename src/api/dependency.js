@@ -4,6 +4,7 @@ export const logSymbol = Symbol('logger')
 export const storageSymbol = Symbol('storage')
 export const userSymbol = Symbol('userApi')
 export const recipeSymbol = Symbol('recipeApi')
+export const pdfSymbol = Symbol('pdfSymbol')
 
 // export const useBarcode = () => inject(barcodeSymbol)
 // export const useUser = () => inject(userSymbol)

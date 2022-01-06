@@ -10,4 +10,9 @@ export default class RecipeApi {
   filter (query = '', lastDate = LAST_DATE, uuid = LAST_UUID, next = false) {
     return this.transportApi.fetch('/api/v2/llo/recipes/filter', { query, lastDate, uuid, next }, 'GET')
   }
+
+  get (id = '') {
+    if (!id) throw new Error('Не указан ID рецета для запроса')
+    return this.transportApi.fetch(`/api/v2/llo/recipes/${id}`, {}, 'GET')
+  }
 }

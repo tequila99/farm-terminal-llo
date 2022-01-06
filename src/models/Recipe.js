@@ -9,6 +9,7 @@ export default class Recipe {
     this.uuid = LAST_UUID
     this.query = ''
     this.items = []
+    this.item = {}
     Recipe.instance = this
   }
 
@@ -33,6 +34,7 @@ export default class Recipe {
 
   async next () {
     if (!this.items.length) return
+    this.logger.debug(`Выполняетс язапрос на получение следующего блок информации о рецептах. Последний рецепт: дата - ${this.lastDate}, UUID = ${this.uuid}`)
     const { items } = await this.api.filter({
       query: this.query,
       lastDate: this.lastDate,
@@ -46,5 +48,13 @@ export default class Recipe {
       ...items
     ]
     return this.items
+  }
+
+  async get (id) {
+    this.logger.debug(`Выполняется получение информации о рецепте с ID: ${id}`)
+    const { item } = await this.api.get(id)
+    this.logger.debug(`Получена информация о рецепте с ID: ${id}`)
+    this.item = item
+    return this.item
   }
 }

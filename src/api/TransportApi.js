@@ -3,6 +3,7 @@ import { Loading } from 'quasar'
 export default class TransportApi {
   constructor (baseUrl) {
     if (TransportApi.instance) return TransportApi.instance
+    this.token = ''
     this.baseUrl = baseUrl || window.location.origin
     this.headers = {
       'content-type': 'application/json',
@@ -15,9 +16,11 @@ export default class TransportApi {
     if (needAuth && !this.token) throw new Error('Отсутствует токен авторизации. Запрос невозможен')
     let fullUrl = `${this.baseUrl}${url}`
     let options = {}
-    if (method === 'GET' && Object.keys(body).length) {
-      const search = new URLSearchParams(body)
-      fullUrl = `${fullUrl}/?${search.toString()}`
+    if (method === 'GET') {
+      if (Object.keys(body).length) {
+        const search = new URLSearchParams(body)
+        fullUrl = `${fullUrl}/?${search.toString()}`
+      }
     } else {
       options = {
         body: JSON.stringify(body)

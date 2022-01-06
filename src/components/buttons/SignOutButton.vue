@@ -1,11 +1,11 @@
 <template lang='pug'>
 q-btn(flat round @click='handleSignOut')
-  CloseIcon
+  SignOutIcon
   q-tooltip Выход из программы
 </template>
 
 <script>
-import CloseIcon from 'components/icons/CloseIcon.vue'
+import SignOutIcon from 'components/icons/SignOutIcon.vue'
 import { userSymbol } from 'src/api/dependency'
 export default {
   name: 'SignOutButton',
@@ -30,7 +30,7 @@ export default {
     }
   },
   components: {
-    CloseIcon
+    SignOutIcon
   }
 }
 </script>
